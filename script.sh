@@ -13,4 +13,4 @@ cd /home/box/web/ask
 exec gunicorn_django -w $NUM_WORKERS \
   --user=$USER --group=$GROUP --log-level=debug \
   --log-file=$LOGFILE 2>>$LOGFILE \
-  --bind 127.0.0.1:$PORT
+  --bind 0.0.0.0:$PORT

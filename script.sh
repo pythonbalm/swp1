@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-LOGFILE=/var/log/gunicorn/ask.log
+LOGFILE=/home/box/web/log/gunicorn/ask.log
 LOGDIR=$(dirname $LOGFILE)
 NUM_WORKERS=3
 # user/group to run as

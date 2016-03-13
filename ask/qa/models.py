@@ -11,6 +11,9 @@ class Question(models.Model):
     author = models.ForeignKey(User)
     likes = models.TextField()
 
+    def __unicode__(self):
+        return self.title
+
 
 class Answer(models.Model):
     text = models.TextField()

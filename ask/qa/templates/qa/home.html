@@ -1,0 +1,32 @@
+{% extends "qa/base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% for q in questions %}
+       <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><a href="{% url 'question' q.id %}">{{ q.title }}</a></h3>
+            </div>
+           <!--
+           <div class="panel-body">
+                {{ q.text }}
+            </div>
+           -->
+        </div>
+    {% endfor %}
+    <nav>
+        <ul class="pagination">
+            {% for p in paginator.page_range %}
+                {% if p.number == page.number %}
+                <li class="active">
+                {% else %}
+                <li>
+                {% endif %}
+                    <a href="{{ paginator.baseurl }}{{ p }}">
+                        {{ p }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endblock %}

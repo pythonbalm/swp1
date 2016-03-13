@@ -10,13 +10,13 @@ def test(request, *args, **kwargs):
 
 @require_GET
 def home(request):
-    questions = Question.objects.all()
-    limit = request.GET.get('limit', 10)
+    questions = Question.objects.order_by('-added_at')
+    #limit = request.GET.get('limit', 10)
     #page = request.GET.get('page', 1)
 
-    paginator = Paginator(questions, limit)
-    paginator.baseurl = '/?page='
-    page = paginate(request, questions)
+    #paginator = Paginator(questions, limit)
+    #paginator.baseurl = '/?page='
+    paginator, page = paginate(request, questions)
 
     return render(request, 'qa/home.html', {
         'questions': page.object_list,
@@ -27,12 +27,12 @@ def home(request):
 @require_GET
 def popular(request):
     questions = Question.objects.order_by('-rating')
-    limit = request.GET.get('limit', 10)
+    #limit = request.GET.get('limit', 10)
     #page = request.GET.get('page', 1)
 
-    paginator = Paginator(questions, limit)
-    paginator.baseurl = '?page='
-    page = paginate(request, questions)
+    #paginator = Paginator(questions, limit)
+    #paginator.baseurl = '?page='
+    paginator, page = paginate(request, questions)
 
     return render(request, 'qa/popular.html', {
         'questions': page.object_list,
@@ -71,5 +71,5 @@ def paginate(request, qs):
     except EmptyPage:
         page = paginator.page(paginator.num_pages)
 
-    return page
+    return paginator, page
 

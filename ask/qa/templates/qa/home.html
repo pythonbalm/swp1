@@ -3,16 +3,7 @@
 
 {% block content %}
     {% for q in questions %}
-       <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><a href="{% url 'question' q.id %}">{{ q.title }}</a></h3>
-            </div>
-           <!--
-           <div class="panel-body">
-                {{ q.text }}
-            </div>
-           -->
-        </div>
+        <h3 class="panel-title"><a href="{% url 'question' q.id %}">{{ q.title }}</a></h3>
     {% endfor %}
     <nav>
         <ul class="pagination">
@@ -22,9 +13,7 @@
                 {% else %}
                 <li>
                 {% endif %}
-                    <a href="{{ paginator.baseurl }}{{ p }}">
-                        {{ p }}
-                    </a>
+                    <a href="?page={{ p }}">{{ p }}</a>
                 </li>
             {% endfor %}
         </ul>

@@ -8,14 +8,10 @@ from django.views.decorators.http import require_GET
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
 
+
 @require_GET
 def home(request):
     questions = Question.objects.order_by('-added_at')
-    #limit = request.GET.get('limit', 10)
-    #page = request.GET.get('page', 1)
-
-    #paginator = Paginator(questions, limit)
-    #paginator.baseurl = '/?page='
     paginator, page = paginate(request, questions)
 
     return render(request, 'qa/home.html', {
@@ -24,14 +20,10 @@ def home(request):
         'page': page,
     })
 
+
 @require_GET
 def popular(request):
     questions = Question.objects.order_by('-rating')
-    #limit = request.GET.get('limit', 10)
-    #page = request.GET.get('page', 1)
-
-    #paginator = Paginator(questions, limit)
-    #paginator.baseurl = '?page='
     paginator, page = paginate(request, questions)
 
     return render(request, 'qa/popular.html', {
@@ -39,6 +31,7 @@ def popular(request):
         'paginator': paginator,
         'page': page,
     })
+
 
 @require_GET
 def question(request, id=id):

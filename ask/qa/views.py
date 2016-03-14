@@ -11,7 +11,7 @@ def test(request, *args, **kwargs):
 
 @require_GET
 def home(request):
-    questions = Question.objects.order_by('-added_at')
+    questions = Question.objects.order_by('id')
     paginator, page = paginate(request, questions)
 
     return render(request, 'qa/home.html', {

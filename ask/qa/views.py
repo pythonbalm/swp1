@@ -48,7 +48,6 @@ def question(request, id):
     })
 
 
-
 @require_POST
 def answer(request):
     form = AnswerForm(request.POST)
